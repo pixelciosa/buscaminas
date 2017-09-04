@@ -1,0 +1,77 @@
+body {
+	font-family: Helvetica;
+	font-size: 16px;
+	margin: 0 auto;
+	text-align: center;
+	background-color: #141C27;
+}
+h1 {
+	color: #E9BF75;
+	margin: 0 auto;
+	line-height: 2;
+}
+.controls {
+	background-color: #647972;
+	padding: 10px;
+	color: #E9BF75;
+	min-width: 400px;
+}
+.form-control {
+	width: 20%;
+	display: inline-block;
+	max-width: 150px;
+}
+label {
+	width: 100%;
+	display: block;
+}
+input {
+	background-color: transparent;
+	border: solid 2px #141C27;
+	border-radius: 20px;
+	padding: 5px;
+	width: 60px;
+	color: #FFF;
+}
+button.go {
+	background-color: #F6905F;
+	border-radius: 15px;
+	color: #FFF;
+	padding: 8px;
+	border: none;
+	width: 80%;
+}
+a {
+	color: #F6905F;
+	text-decoration: none;
+	font-size: 13px;
+}
+#mineField {
+	margin: 0 auto;
+	padding: 20px;
+}
+cell button {
+	display: inline-block;
+	background-color: gray;
+	font-size: 1px;
+	line-height: 1;
+}
+.timer {
+	color: #FFF;
+	font-size: 24px;
+	line-height: 1.5;
+}
+
+.open {
+	background-color: white;
+}
+.boom {
+	background: url(explosive-bomb.png) no-repeat 0px 0px;
+	background-size:cover;
+	background-color: gray;
+}
+.flag {
+	background: url(flag.png) no-repeat 0px 0px;
+	background-size:cover;
+	background-color: #BBB;
+}

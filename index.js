@@ -1,6 +1,6 @@
 import options from './options.js';
 
-class Game {
+export default class Game {
 	constructor(cols, rows, mines) {
 		this.cols = options.cols || 10
 		this.rows = options.rows || 10
@@ -11,7 +11,7 @@ class Game {
 	}
 	init() {
 		var _this = this;
-		const canvas = document.getElementById('app')
+		const canvas = document.getElementById('mineField')
 		// Set the grid container
 		function initCanvas() {
 			canvas.style.width = (_this.cellSize * _this.cols)+'px'
@@ -29,7 +29,7 @@ class Game {
 					cell.innerHTML =
 						`<button id="${id++}" class="btn" style="width:${_this.cellSize}px; height:${_this.cellSize}px "/>`
 
-					document.getElementById('app').appendChild(cell)
+					canvas.appendChild(cell)
 
 				}
 			}
@@ -54,15 +54,15 @@ class Game {
 				return array;
 			}
 
-			var cells = Array.apply(null, {length: (_this.rows * _this.cols)}).map(Number.call, Number)
+			var cells = Array.apply(null, {length: (_this.rows * _this.cols)}).map(Number.call, Number);
 			shuffle(cells);
 
 			var minesLocations = cells.splice(0, _this.mines);
 
 			for (var i = 0; i < minesLocations.length; i++) {
-				var mined = document.getElementById(minesLocations[i])
+				var mined = document.getElementById(minesLocations[i]);
 
-				mined.classList.add('mined')
+				mined.classList.add('mined');
 
 				// Temp (For devs visualizacion)
 
@@ -76,20 +76,20 @@ class Game {
 			console.log(_this.buttons)
 			_this.buttons.forEach(
 				function eventListeners(button) {
-					button.addEventListener('click', onClick)
-					button.addEventListener('contextmenu', rightClick, false)
+					button.addEventListener('click', onClick);
+					button.addEventListener('contextmenu', rightClick, false);
 				}
 			)
 			function onClick() {
 				if (this.classList.contains('mined')) {
 					_this.endGame(this);
 				} else {
-					this.classList.add('open')
+					this.classList.add('open');
 				}
 			}
 			function rightClick(ev) {
-				 // ev.preventDefault();
-				console.log('ok right click')
+				ev.preventDefault();
+				this.classList.add('flag');
 			    return false;
 			}
 		}
@@ -117,15 +117,12 @@ class Game {
 
 		setTimeout(function () {
 
-			alert('Perdiste :(')
-			_this.resetGame()
+			alert('Perdiste :( ')
+			resetGame()
 		}, 200);
 	}
-	resetGame() {
-		document.location.href=""
-	}
-
 }
-let buscaminas = new Game()
+const buscaminas = new Game()
 
 buscaminas.init();
+

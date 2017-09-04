@@ -2,8 +2,8 @@
 
 var options = {
 	rows: 13,
-	cols: 13,
-	mines: 10,
+	cols: 10,
+	mines: 20,
 	cellSize: 30
 }
 

@@ -3,28 +3,47 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Buscaminas</title>
-	<style>
-		#app {
-			background-color: #000;
-		}
-		button {
-			display: inline-block;
-			background-color: gray;
-			font-size: 1px;
-			line-height: 1;
-		}
-		.open {
-			background-color: white;
-		}
-		.boom {
-			background: url(explosive-bomb.png) no-repeat 0px 0px;
-			background-size:cover;
-			background-color: gray;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<div id="app"></div>
+	<div id="app">
+	<h1>Buscaminas</h1>
+		<div class="controls">
+			<form action="resetGame">
+				<div class="form-control">
+
+					<label for="cols">Columnas</label>
+					<input type="number" name="cols" id="cols" value="10" />
+				</div>
+				<div class="form-control">
+					<label for="rows">Filas</label>
+					<input type="number" name="rows" value="10" />
+
+				</div>
+				<div class="form-control">
+					<label for="mines">Minas</label>
+					<input type="number" name="mines" value="10"/>
+
+				</div>
+				<div class="form-control">
+					<button class="go" action="submit">Go!</button>
+				</div>
+			</form>
+		</div>
+		<div class="timer">
+			00:00
+		</div>
+		<div class="actions">
+			<a href="#" onClick="resetGame()">Reiniciar juego</a>
+		</div>
+		<div id="mineField"></div>
+	</div>
 	<script type="text/javascript" src="app.js"></script>
+	<script>
+			function resetGame() {
+		document.location.href="";
+		cols = document.getElementById('cols').value
+	};
+	</script>
 </body>
 </html>
