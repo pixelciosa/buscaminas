@@ -8,6 +8,9 @@ export default class Game {
 		this.cellSize = options.cellSize || 20
 		this.isOver = false
 		this.buttons = []
+		this.minesLocations = []
+		this.deactivated = []
+		this.flags = []
 	}
 	init() {
 		var _this = this;
@@ -37,7 +40,7 @@ export default class Game {
 		}
 		// Put mines in random cells
 		function initMines() {
-
+			var ctx = _this;
 			function shuffle(array) {
 				var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -58,6 +61,8 @@ export default class Game {
 			shuffle(cells);
 
 			var minesLocations = cells.splice(0, _this.mines);
+			ctx.minesLocations = minesLocations;
+
 
 			for (var i = 0; i < minesLocations.length; i++) {
 				var mined = document.getElementById(minesLocations[i]);
@@ -66,12 +71,18 @@ export default class Game {
 
 				// Temp (For devs visualizacion)
 
-				mined.style.opacity = '.9';
+				mined.style.opacity = '.7';
 
 			}
+			console.log('this.minesLocations ' + ctx.minesLocations);
+			console.log('minesLocations ' + minesLocations);
+			return minesLocations;
+
 		}
 		// Event Listeners
 		function eventListeners() {
+			var ctx = _this;
+
 			_this.buttons = Array.from(document.getElementsByClassName('btn'))
 			console.log(_this.buttons)
 			_this.buttons.forEach(
@@ -82,27 +93,32 @@ export default class Game {
 			)
 			function onClick() {
 				if (this.classList.contains('mined')) {
-					_this.endGame(this);
+					_this.looseGame(this);
 				} else {
 					this.classList.add('open');
 				}
 			}
 			function rightClick(ev) {
+
 				ev.preventDefault();
-				this.classList.add('flag');
-			    return false;
+
+				if (this.classList.contains('flag')){
+					this.classList.remove('flag');
+				} else {
+					this.classList.add('flag');
+				}
+				_this.winGame(this);
 			}
 		}
 
-
-
+		// init executions
 		initCanvas();
 		initCells();
 		initMines();
 		eventListeners();
 
 	}
-	endGame(btn) {
+	looseGame(btn) {
 		var _this = this;
 
 		btn.classList.add('boom');
@@ -118,8 +134,31 @@ export default class Game {
 		setTimeout(function () {
 
 			alert('Perdiste :( ')
-			resetGame()
+			restartGame()
 		}, 200);
+	}
+	winGame(btn) {
+		var ctx = this;
+
+		function check() {
+			ctx.flags = Array.from(document.getElementsByClassName('flag'))
+			console.log('flags ' + ctx.flags.length)
+			console.log('minesLocations ' + ctx.minesLocations.length)
+			console.log('deactivated ' + ctx.deactivated.length)
+			if (ctx.minesLocations.length == ctx.deactivated.length && ctx.minesLocations.length == ctx.flags.length) {
+
+				setTimeout(function () {
+
+				alert('Ganaste! :)')
+				restartGame()
+				}, 200);
+
+			}
+		}
+		if (btn.classList.contains('mined')) {
+			ctx.deactivated.push(btn.id)
+		}
+			check()
 	}
 }
 const buscaminas = new Game()

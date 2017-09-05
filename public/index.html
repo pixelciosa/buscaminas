@@ -9,7 +9,7 @@
 	<div id="app">
 	<h1>Buscaminas</h1>
 		<div class="controls">
-			<form action="resetGame">
+			<form>
 				<div class="form-control">
 
 					<label for="cols">Columnas</label>
@@ -26,7 +26,7 @@
 
 				</div>
 				<div class="form-control">
-					<button class="go" action="submit">Go!</button>
+					<button class="go" action="resetGame(20, 20, 5)">Go!</button>
 				</div>
 			</form>
 		</div>
@@ -34,16 +34,21 @@
 			00:00
 		</div>
 		<div class="actions">
-			<a href="#" onClick="resetGame()">Reiniciar juego</a>
+			<a href="javascript:void(0)" onClick="restartGame()">Reiniciar juego</a>
 		</div>
 		<div id="mineField"></div>
 	</div>
 	<script type="text/javascript" src="app.js"></script>
 	<script>
-			function resetGame() {
-		document.location.href="";
-		cols = document.getElementById('cols').value
+			function resetGame(cols, rows, mines) {
+		// document.location.href="";
+		var userCols = cols;
+		var rows = rows;
+		var mines = mines;
 	};
+	function restartGame() {
+		document.location.href="";
+	}
 	</script>
 </body>
 </html>
