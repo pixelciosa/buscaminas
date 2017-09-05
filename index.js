@@ -71,11 +71,9 @@ export default class Game {
 
 				// Temp (For devs visualizacion)
 
-				mined.style.opacity = '.7';
+				mined.style.opacity = '.8';
 
 			}
-			console.log('this.minesLocations ' + ctx.minesLocations);
-			console.log('minesLocations ' + minesLocations);
 			return minesLocations;
 
 		}
@@ -84,7 +82,6 @@ export default class Game {
 			var ctx = _this;
 
 			_this.buttons = Array.from(document.getElementsByClassName('btn'))
-			console.log(_this.buttons)
 			_this.buttons.forEach(
 				function eventListeners(button) {
 					button.addEventListener('click', onClick);
@@ -142,9 +139,6 @@ export default class Game {
 
 		function check() {
 			ctx.flags = Array.from(document.getElementsByClassName('flag'))
-			console.log('flags ' + ctx.flags.length)
-			console.log('minesLocations ' + ctx.minesLocations.length)
-			console.log('deactivated ' + ctx.deactivated.length)
 			if (ctx.minesLocations.length == ctx.deactivated.length && ctx.minesLocations.length == ctx.flags.length) {
 
 				setTimeout(function () {
